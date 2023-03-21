@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import './custom_button.dart';
 
 class InputSection extends StatelessWidget {
-  const InputSection({super.key});
+  Function setNumber;
+
+  InputSection(this.setNumber);
 
   @override
   Widget build(BuildContext context) {
@@ -14,46 +16,53 @@ class InputSection extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              CustomButton('AC', const Color.fromRGBO(108, 211, 192, 1)),
-              CustomButton('S', const Color.fromRGBO(108, 211, 192, 1)),
-              CustomButton(''),
-              CustomButton('/', const Color.fromRGBO(219, 127, 128, 1)),
+              CustomButton(
+                  'AC', setNumber, const Color.fromRGBO(108, 211, 192, 1)),
+              CustomButton(
+                  'S', setNumber, const Color.fromRGBO(108, 211, 192, 1)),
+              CustomButton('', setNumber),
+              CustomButton(
+                  '/', setNumber, const Color.fromRGBO(219, 127, 128, 1)),
             ],
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              CustomButton('7'),
-              CustomButton('8'),
-              CustomButton('9'),
-              CustomButton('x', const Color.fromRGBO(219, 127, 128, 1)),
+              CustomButton('7', setNumber),
+              CustomButton('8', setNumber),
+              CustomButton('9', setNumber),
+              CustomButton(
+                  'x', setNumber, const Color.fromRGBO(219, 127, 128, 1)),
             ],
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              CustomButton('4'),
-              CustomButton('5'),
-              CustomButton('6'),
-              CustomButton('-', const Color.fromRGBO(219, 127, 128, 1)),
+              CustomButton('4', setNumber),
+              CustomButton('5', setNumber),
+              CustomButton('6', setNumber),
+              CustomButton(
+                  '-', setNumber, const Color.fromRGBO(219, 127, 128, 1)),
             ],
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              CustomButton('1'),
-              CustomButton('2'),
-              CustomButton('3'),
-              CustomButton('+', const Color.fromRGBO(219, 127, 128, 1)),
+              CustomButton('1', setNumber),
+              CustomButton('2', setNumber),
+              CustomButton('3', setNumber),
+              CustomButton(
+                  '+', setNumber, const Color.fromRGBO(219, 127, 128, 1)),
             ],
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              CustomButton('0'),
-              CustomButton('.'),
-              CustomButton(''),
-              CustomButton('=', const Color.fromRGBO(219, 127, 128, 1)),
+              CustomButton('0', setNumber),
+              CustomButton('.', setNumber),
+              CustomButton('', setNumber),
+              CustomButton(
+                  '=', setNumber, const Color.fromRGBO(219, 127, 128, 1)),
             ],
           ),
         ],

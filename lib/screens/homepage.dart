@@ -1,15 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:training_calculator_app/widgets/input_section.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+class HomePage extends StatefulWidget {
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  String displayedNumber = '0';
+
+  void setNumber(String val) {
+    setState(() {
+      displayedNumber = val;
+      print('Button was pressed');
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     double appBarHeight = MediaQuery.of(context).padding.top + kToolbarHeight;
     double usableHeight = MediaQuery.of(context).size.height - appBarHeight;
-
-    String displayedNumber = '4';
 
     return Scaffold(
       appBar: AppBar(title: const Text('Calculator')),
@@ -27,7 +37,7 @@ class HomePage extends StatelessWidget {
                   style: const TextStyle(fontSize: 38, color: Colors.white),
                 ),
               )),
-          SizedBox(height: usableHeight * 0.7, child: const InputSection())
+          SizedBox(height: usableHeight * 0.7, child: InputSection(setNumber))
         ],
       ),
     );
