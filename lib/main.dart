@@ -11,11 +11,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Calculator',
-      theme: ThemeData(
-        primarySwatch: Colors.amber,
-      ),
-      home: const HomePage(),
-    );
+        title: 'Flutter Calculator',
+        theme: ThemeData(
+          primarySwatch: Colors.blueGrey,
+        ),
+        home: const HomePage(),
+        debugShowCheckedModeBanner: false);
   }
 }

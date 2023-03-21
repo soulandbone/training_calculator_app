@@ -6,15 +6,28 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
+    double appBarHeight = MediaQuery.of(context).padding.top + kToolbarHeight;
+    double usableHeight = MediaQuery.of(context).size.height - appBarHeight;
+
+    String displayedNumber = '4';
+
     return Scaffold(
-      appBar: AppBar(title: Text('Height of device is $height')),
+      appBar: AppBar(title: const Text('Calculator')),
       body: Column(
         children: [
           Container(
-              height: height * 0.3,
-              decoration: const BoxDecoration(color: Colors.lime)),
-          Container(height: height * 0.5, child: const InputSection())
+              alignment: Alignment.bottomLeft,
+              height: usableHeight * 0.3,
+              decoration:
+                  const BoxDecoration(color: Color.fromRGBO(37, 41, 47, 1)),
+              child: Container(
+                margin: const EdgeInsets.all(25),
+                child: Text(
+                  displayedNumber,
+                  style: const TextStyle(fontSize: 38, color: Colors.white),
+                ),
+              )),
+          SizedBox(height: usableHeight * 0.7, child: const InputSection())
         ],
       ),
     );
