@@ -56,8 +56,6 @@ class InputSection extends StatelessWidget {
               CustomButton('=', const Color.fromRGBO(219, 127, 128, 1)),
             ],
           ),
-          Row(),
-          Row()
         ],
       ),
     );
