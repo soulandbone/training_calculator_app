@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class CustomButton extends StatelessWidget {
+class CustomButtonOperators extends StatelessWidget {
   String val;
-  Function setNumber;
+  Function setOperation;
   Color textColor1;
 
-  CustomButton(this.val, this.setNumber,
+  CustomButtonOperators(this.val, this.setOperation,
       [this.textColor1 = const Color.fromRGBO(244, 248, 248, 1)]);
 
   @override
@@ -15,7 +15,7 @@ class CustomButton extends StatelessWidget {
       decoration: const BoxDecoration(color: Color.fromRGBO(39, 42, 51, 1)),
       alignment: Alignment.topCenter,
       child: OutlinedButton(
-        onPressed: () => setNumber(val),
+        onPressed: () => setOperation(val),
         child: Text(
           val,
           style: TextStyle(fontSize: 40, color: textColor1),

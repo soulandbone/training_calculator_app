@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:training_calculator_app/widgets/custom_button_operators.dart';
 import './custom_button.dart';
 
 class InputSection extends StatelessWidget {
   Function setNumber;
+  Function setOperation;
 
-  InputSection(this.setNumber);
+  InputSection(this.setNumber, this.setOperation);
 
   @override
   Widget build(BuildContext context) {
@@ -21,8 +23,8 @@ class InputSection extends StatelessWidget {
               CustomButton(
                   'S', setNumber, const Color.fromRGBO(108, 211, 192, 1)),
               CustomButton('', setNumber),
-              CustomButton(
-                  '/', setNumber, const Color.fromRGBO(219, 127, 128, 1)),
+              CustomButtonOperators(
+                  '/', setOperation, const Color.fromRGBO(219, 127, 128, 1)),
             ],
           ),
           Row(
@@ -31,8 +33,8 @@ class InputSection extends StatelessWidget {
               CustomButton('7', setNumber),
               CustomButton('8', setNumber),
               CustomButton('9', setNumber),
-              CustomButton(
-                  'x', setNumber, const Color.fromRGBO(219, 127, 128, 1)),
+              CustomButtonOperators(
+                  'x', setOperation, const Color.fromRGBO(219, 127, 128, 1)),
             ],
           ),
           Row(
@@ -41,8 +43,8 @@ class InputSection extends StatelessWidget {
               CustomButton('4', setNumber),
               CustomButton('5', setNumber),
               CustomButton('6', setNumber),
-              CustomButton(
-                  '-', setNumber, const Color.fromRGBO(219, 127, 128, 1)),
+              CustomButtonOperators(
+                  '-', setOperation, const Color.fromRGBO(219, 127, 128, 1)),
             ],
           ),
           Row(
@@ -51,8 +53,8 @@ class InputSection extends StatelessWidget {
               CustomButton('1', setNumber),
               CustomButton('2', setNumber),
               CustomButton('3', setNumber),
-              CustomButton(
-                  '+', setNumber, const Color.fromRGBO(219, 127, 128, 1)),
+              CustomButtonOperators(
+                  '+', setOperation, const Color.fromRGBO(219, 127, 128, 1)),
             ],
           ),
           Row(
@@ -61,8 +63,8 @@ class InputSection extends StatelessWidget {
               CustomButton('0', setNumber),
               CustomButton('.', setNumber),
               CustomButton('', setNumber),
-              CustomButton(
-                  '=', setNumber, const Color.fromRGBO(219, 127, 128, 1)),
+              CustomButtonOperators(
+                  '=', setOperation, const Color.fromRGBO(219, 127, 128, 1)),
             ],
           ),
         ],

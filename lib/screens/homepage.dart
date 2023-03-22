@@ -7,12 +7,43 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  String displayedNumber = '0';
+  String displayDown = '0';
+
+  String displayUp = '';
+  int firstNumber = 0;
+  var operator = false;
+
+  var operators = ['+', '-', 'x', '/'];
 
   void setNumber(String val) {
     setState(() {
-      displayedNumber = val;
-      print('Button was pressed');
+      if (!operator) {
+        if (int.parse(val) != 0 && int.parse(displayDown) == 0) {
+          displayDown = val;
+        } else {
+          displayDown = '$displayDown$val';
+        }
+      } else {
+        if (int.parse(displayDown) == firstNumber) {
+          displayDown = val;
+        } else {
+          displayDown = '$displayDown$val';
+        }
+      }
+    });
+  }
+
+  void setOperation(String val) {
+    setState(() {
+      if (operators.contains(val)) {
+        print('SetOperation set');
+        if (!operator) {
+          print('block called ');
+          firstNumber = int.tryParse(displayDown)!;
+          displayUp = '$firstNumber $val';
+          operator = true;
+        }
+      }
     });
   }
 
@@ -30,14 +61,32 @@ class _HomePageState extends State<HomePage> {
               height: usableHeight * 0.3,
               decoration:
                   const BoxDecoration(color: Color.fromRGBO(37, 41, 47, 1)),
-              child: Container(
-                margin: const EdgeInsets.all(25),
-                child: Text(
-                  displayedNumber,
-                  style: const TextStyle(fontSize: 38, color: Colors.white),
-                ),
+              child: Column(
+                children: [
+                  Container(
+                    alignment: Alignment.centerLeft,
+                    margin: const EdgeInsets.all(25),
+                    child: Text(
+                      displayUp,
+                      style: const TextStyle(
+                        fontSize: 24,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                  Container(
+                    alignment: Alignment.centerLeft,
+                    margin: const EdgeInsets.all(25),
+                    child: Text(
+                      displayDown,
+                      style: const TextStyle(fontSize: 38, color: Colors.white),
+                    ),
+                  ),
+                ],
               )),
-          SizedBox(height: usableHeight * 0.7, child: InputSection(setNumber))
+          SizedBox(
+              height: usableHeight * 0.7,
+              child: InputSection(setNumber, setOperation))
         ],
       ),
     );
