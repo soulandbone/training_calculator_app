@@ -10,7 +10,8 @@ class _HomePageState extends State<HomePage> {
   String displayDown = '0';
 
   String displayUp = '';
-  int firstNumber = 0;
+  double firstNumber = 0.0;
+  double secondNumber = 0.0;
   var operator = false;
 
   var operators = ['+', '-', 'x', '/'];
@@ -36,13 +37,14 @@ class _HomePageState extends State<HomePage> {
   void setOperation(String val) {
     setState(() {
       if (operators.contains(val)) {
-        print('SetOperation set');
         if (!operator) {
-          print('block called ');
-          firstNumber = int.tryParse(displayDown)!;
+          firstNumber = double.tryParse(displayDown)!;
           displayUp = '$firstNumber $val';
           operator = true;
         }
+      } else if (val == '=') {
+        displayUp = '$displayUp $displayDown';
+        displayDown = (firstNumber + int.parse(displayDown)).toString();
       }
     });
   }
