@@ -13,6 +13,7 @@ class _HomePageState extends State<HomePage> {
   double firstNumber = 0.0;
   double secondNumber = 0.0;
   var operator = false;
+  var pressedOperators = [];
 
   var operators = ['+', '-', 'x', '/'];
 
@@ -41,10 +42,33 @@ class _HomePageState extends State<HomePage> {
           firstNumber = double.tryParse(displayDown)!;
           displayUp = '$firstNumber $val';
           operator = true;
+          pressedOperators.add(val);
         }
       } else if (val == '=') {
+        print(pressedOperators);
         displayUp = '$displayUp $displayDown';
-        displayDown = (firstNumber + int.parse(displayDown)).toString();
+        switch (pressedOperators[0]) {
+          case '+':
+            {
+              displayDown = (firstNumber + int.parse(displayDown)).toString();
+            }
+            break;
+          case '-':
+            {
+              displayDown = (firstNumber - int.parse(displayDown)).toString();
+            }
+            break;
+          case 'x':
+            {
+              displayDown = (firstNumber * int.parse(displayDown)).toString();
+            }
+            break;
+          case '/':
+            {
+              displayDown = (firstNumber / int.parse(displayDown)).toString();
+            }
+            break;
+        }
       }
     });
   }
