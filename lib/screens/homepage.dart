@@ -10,12 +10,13 @@ class _HomePageState extends State<HomePage> {
   String displayDown = '0';
 
   String displayUp = '';
-  double firstNumber = 0.0;
-  double secondNumber = 0.0;
+  //double firstNumber = 0.0;
+
   var operator = false;
   var pressedOperators = [];
 
   var operators = ['+', '-', 'x', '/'];
+  var numbers = [];
 
   void setNumber(String val) {
     setState(() {
@@ -26,7 +27,7 @@ class _HomePageState extends State<HomePage> {
           displayDown = '$displayDown$val';
         }
       } else {
-        if (int.parse(displayDown) == firstNumber) {
+        if (int.parse(displayDown) == numbers.last) {
           displayDown = val;
         } else {
           displayDown = '$displayDown$val';
@@ -39,33 +40,36 @@ class _HomePageState extends State<HomePage> {
     setState(() {
       if (operators.contains(val)) {
         if (!operator) {
-          firstNumber = double.tryParse(displayDown)!;
-          displayUp = '$firstNumber $val';
-          operator = true;
+          // see how to change this logic to continue making operations
+          numbers.add(double.tryParse(displayDown)!);
+          displayUp = '${numbers.last} $val';
+          operator = !operator;
+          //pressedOperators.removeLast(); // new line added to test
           pressedOperators.add(val);
+          print(pressedOperators);
         }
       } else if (val == '=') {
-        print(pressedOperators);
-        displayUp = '$displayUp $displayDown';
-        switch (pressedOperators[0]) {
+        displayUp = '$displayUp $displayDown $val';
+        operator = false;
+        switch (pressedOperators.last) {
           case '+':
             {
-              displayDown = (firstNumber + int.parse(displayDown)).toString();
+              displayDown = (numbers.last + int.parse(displayDown)).toString();
             }
             break;
           case '-':
             {
-              displayDown = (firstNumber - int.parse(displayDown)).toString();
+              displayDown = (numbers.last - int.parse(displayDown)).toString();
             }
             break;
           case 'x':
             {
-              displayDown = (firstNumber * int.parse(displayDown)).toString();
+              displayDown = (numbers.last * int.parse(displayDown)).toString();
             }
             break;
           case '/':
             {
-              displayDown = (firstNumber / int.parse(displayDown)).toString();
+              displayDown = (numbers.last / int.parse(displayDown)).toString();
             }
             break;
         }
